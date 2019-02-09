@@ -13,7 +13,7 @@ def login_user():
 
         if User.is_login_valid(email, password):
             session['email'] = email
-            return redirect(url_for(.user_alerts))
+            return redirect(url_for(".user_alerts"))
 
     return render_template("users/login.html")
 
@@ -23,8 +23,8 @@ def register_user():
     pass
 
 @user_blueprint.route('/alerts')
-def user_alert():
-    pass
+def user_alerts():
+    return "This is the alert page."
 
 @user_blueprint.route('/alogout')
 def logout_user():
