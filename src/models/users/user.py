@@ -15,13 +15,35 @@ class User(object):
 
     @staticmethod
     def is_login_valid(email, password):
-          user_data = Database.find_one("users", {"email": email})
-          if user_data is None:
-              raise UserErrors.UserNotExistsError("User does not exists")
-          if not Utils.check_hashed_password(password, user_data["password"]):
-              raise UserErrors.IncorrectPasswordError("Password is incorrect")
+        user_data = Database.find_one("users", {"email": email})
+        if user_data is None:
+            raise UserErrors.UserNotExistsError("User does not exists")
+        if not Utils.check_hashed_password(password, user_data["password"]):
+            raise UserErrors.IncorrectPasswordError("Password is incorrect")
 
-          return True
+        return True
 
+
+    @staticmethod
+    def register_user(email, password):
+        user_data = Database.find_one("user", {"email": email})
+        if user_data is not None:
+            raise UserErrors.UserAlredyRegError("User exists")
+        if not Utils.emial_is_valid(email):
+            raise UserErrors.InvalidEmailError("Email format is invalid")
+
+        User(email, Utils.hash_password(password)).save_to_db()
+
+        return True
+
+    def save_to_db(self):
+        Database.insert("users", self.json())
+
+    def json(self):
+        return {
+            "_id": self._id,
+            "email": self.email,
+            "password": self.password
+        }
 
 
