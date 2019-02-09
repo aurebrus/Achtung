@@ -10,11 +10,12 @@ def login_user():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['hashed']
-
-        if User.is_login_valid(email, password):
-            session['email'] = email
-            return redirect(url_for(".user_alerts"))
-
+        try:
+          if User.is_login_valid(email, password):
+                session['email'] = email
+                return redirect(url_for(".user_alerts"))
+        except:
+            return "Your password is wrong"
     return render_template("users/login.html")
 
 
