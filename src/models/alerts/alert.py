@@ -34,10 +34,10 @@ class Alert(object):
     def find_last_upadate(cls, minutes_since_update = AlertConstants.ALERT_TIMEOUT):
         last_updated_limit = datetime.datetime.utcnow() - datetime.timedelta(minutes=minutes_since_update)
         return [cls(**elem) for elem in Database.find(AlertConstants.COLLECTION,
-                                                      {"last_chcked": {"$gte": last_updated_limit}})]
+                                                      {"last_chcked": {"$lte": last_updated_limit}})]
 
     def seve_to_mongo(self):
-        Database.insert(AlertConstants.COLLECTION, self.json)
+        Database.update(AlertConstants.COLLECTION, {"_id": self._id}, self.json())
 
     def json(self):
         return {
@@ -47,3 +47,13 @@ class Alert(object):
             "user_email": self.user_email,
             "item_id": self.item._id
         }
+
+    def load_item_price(self):
+        self.load_item_price()
+        self.last_checked = datetime.datetime.utcnow()
+        self.seve_to_mongo()
+        return self.item.price
+
+    def send_email_price_reached(self):
+        if self.item.price < self.price_limit:
+            self.send()
