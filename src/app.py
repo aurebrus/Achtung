@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from src.common.database import Database
 
@@ -11,8 +11,10 @@ def init_db():
     Database.initialize()
 
 @app.route('/')
-def hello_world():
-    return "Hello world!"
+def home():
+    return render_template('home.html')
+
+
 
 from src.models.users.views import user_blueprint
 app.register_blueprint(user_blueprint, url_prefix="/users")
