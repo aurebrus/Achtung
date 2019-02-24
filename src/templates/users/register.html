@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+    <div class="form-size">
+    <p>Wprowadź adres e-mail oraz hasło aby się zarejestrować:</p>
+    <form action="{{ url_for('users.register_user') }}" method="post">
+        <div class="form-group">
+            <input type="email" class="form-control" id ="email" name="email" placeholder="e-mail">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id ="password" name="password"  placeholder="hasło">
+        </div>
+        <button type="submit" class="btn btn-primary">Zarejestruj się!</button>
+    </form>
+    </div>
+</div>
+{% endblock %}
