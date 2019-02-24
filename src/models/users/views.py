@@ -3,6 +3,7 @@ from werkzeug.utils import redirect
 
 from src.models.users.user import User
 import src.models.users.errors as UserErrors
+import src.models.users.decorators as user_decorators
 
 user_blueprint = Blueprint('users', __name__)
 
@@ -38,6 +39,7 @@ def register_user():
     return render_template("users/register.html")
 
 @user_blueprint.route('/alerts')
+@user_decorators.requires_login
 def user_alerts():
     user = User.find_by_email(session['email'])
     alerts = user.get_alerts()

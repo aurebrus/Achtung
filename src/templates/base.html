@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Achtung!</title>
+    <title>Alert!</title>
 
     {% include 'html_dependencies.html' %}
 
@@ -12,7 +12,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-    <a class="navbar-brand" href="/"> <i class="fas fa-exclamation-circle"></i> Achtung</a>
+    <a class="navbar-brand" href="/"> <i class="fas fa-broadcast-tower"></i> Alert!</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -25,7 +25,7 @@
       {% if session['email'] %}
           <ul class="navbar-nav navbar-right">
                <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('users.user_alerts') }}"><i class="fas fa-exclamation"></i> Twoje Alerty</a>
+            <a class="nav-link" href="{{ url_for('users.user_alerts') }}"><i class="fas fa-exclamation-circle"></i> Twoje Alerty</a>
             </li>
               <li class="nav-item">
             <a class="nav-link" href="{{ url_for('users.logout_user') }}"><i class="fas fa-sign-out-alt"></i> Wyloguj</a>

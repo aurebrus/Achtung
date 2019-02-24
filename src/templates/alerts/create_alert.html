@@ -1,6 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="pb-2 mt-4 mb-2 border-bottom">
+    <h1>Utwórz alert</h1>
+</div>
 <div class="jumbotron">
-    <p>Utwórz alert</p>
+<div class="form-size">
+    <form method="POST">
+        <div class="form-group">
+            <label for="name"><strong>Alert</strong></label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Nazwa przedmiotu">
+        </div>
+        <div class="form-group">
+            <label for="url"><strong>URL</strong></label>
+            <input type="text" class="form-control" id="url" name="url" placeholder="URL przedmiotu">
+        </div>
+        <div class="form-group">
+            <label for="price_limit"><strong>Limit ceny </strong></label>
+            <input type="text" class="form-control" id="price_limit" name="price_limit" placeholder="Cena, która cię interesuje" aria-describedby="priceLimit">
+            <p id="priceLimit" class="help-block">Gdy powyższa cena przedmiotu zostanie osiągnięta, wyślę do Ciebie wiadomość e-mailową.</p>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-cart-plus"></i> Utwórz alert</button>
+    </form>
+</div>
 </div>
 {% endblock %}
