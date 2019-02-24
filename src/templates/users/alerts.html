@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="jumbotron">
-    <p>Alerty</p>
-</div>
+    <div class="pb-2 mt-4 mb-2 border-bottom">
+        <h1>Alerty</h1><p>Tutaj znajdziesz utworzone alerty.</p>
+    </div>
+    <div class="list-group">
+        {% for alert in alerts %}
+            <a href="{{ url_for('alerts.get_alert_page', alert_id = alert._id) }}" class="list-group-item list-group-item-action">
+                <h4 class="list-group-item-heading">Alert dla: {{ alert.item.name }}</h4>
+                <p class="list-group-item-text">Ostatnia cena: {{ alert.item.price }}<br/>
+                Ostatnio sprawdzone: {{ alert.last_checked.strftime("%d-%m-%Y, godzina %H:%M") }}</p>
+            </a>
+        {% endfor %}
+    </div>
+    <a class="btn btn-primary" href="{{ url_for('alerts.create_alert') }}"><i class="fas fa-plus-square"></i> Utwórz nowy</a>
 {% endblock %}

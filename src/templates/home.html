@@ -1,10 +1,58 @@
 {% extends "base.html" %}
 {% block content %}
+{% if session['email'] %}
 <div class="jumbotron">
-  <h1 class="display-4">Alerty cenowe!</h1>
+  <h1 class="display-4">Panel użytkownika</h1>
+    <hr class="my-4">
+  <div class="row">
+  <div class="col-sm-6">
+    <div class="card text-center text-white bg-secondary">
+      <div class="card-body ">
+        <h5 class="card-title">Alerty</h5>
+        <p class="card-text">Sprawdź swoje alerty, edytuj je oraz utwórz nowe.</p>
+      <a class="btn btn-primary" href="{{ url_for('users.user_alerts') }}"><i class="fas fa-exclamation"></i> Twoje Alerty</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card text-center text-white bg-secondary">
+      <div class="card-body">
+        <h5 class="card-title">Sklepy</h5>
+        <p class="card-text">Sprawdź listę sklepów oraz utwórz nowe.</p>
+    <a class="btn btn-primary" href="{{ url_for('stores.index') }}"><i class="fas fa-shopping-bag"></i> Sklepy</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+{% else %}
+<div class="jumbotron">
+  <h1 class="display-4">Alerty cenowe</h1>
     <p class="lead">Wprowadź przedmiot który cię interesuje oraz cenę, która wydaje Ci się odpowiednia, a ja sprawdzę i poinformuję Cię, gdy tylko zostanie ona osiągnięta!</p>
     <hr class="my-4">
-    <p>Zarejestruj się i wprowadzaj URL przedmiotów, które Cię interesują!</p>
-  <a class="btn btn-primary btn-lg" href="{{ url_for('users.register_user') }}" role="button">Zarejestuj się!</a>
+    <div class="row">
+  <div class="col-sm-6">
+    <div class="card text-center text-white bg-secondary">
+      <div class="card-body ">
+        <h5 class="card-title">Rejestracja</h5>
+        <p class="card-text">Nie masz jeszcze konta? Zarejestuj się oraz zacznij oszczędzać!</p>
+      <a class="btn btn-primary btn-lg" href="{{ url_for('users.register_user') }}" role="button"><i class="fas fa-hands-helping"></i> Zarejestruj się!</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card text-center text-white bg-secondary">
+      <div class="card-body">
+        <h5 class="card-title">Logowanie</h5>
+        <p class="card-text">Masz konto? Zaloguj się oraz zarządaj  alertami oraz sklepami!</p>
+        <a class="btn btn-primary btn-lg" href="{{ url_for('users.login_user') }}" role="button"><i class="fas fa-sign-in-alt"></i> Zaloguj się!</a>
+      </div>
+    </div>
+  </div>
 </div>
+</div>
+{% endif %}
+
 {% endblock %}
