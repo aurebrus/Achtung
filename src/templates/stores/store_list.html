@@ -12,5 +12,7 @@
         {% endfor %}
     </div>
     <br/>
+    {% if session['email'] in config.ADMINS %}
     <a class="btn btn-primary" href="{{ url_for('stores.create_store') }}"><i class="fas fa-cart-plus"></i> Utwórz nowy sklep</a>
+    {% endif %}
 {% endblock %}

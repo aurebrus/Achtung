@@ -4,7 +4,9 @@
     <h1><strong><i class="fas fa-caret-right"></i> Nazwa sklepu:</strong> <small> "{{ store.name }}"</small></h1><br/>
     <p><strong><i class="fas fa-scroll"></i> Opis: </strong></p>
     <p>Wszystkie URL tej strony powinny rozpoczynać się na: {{ store.url_prefix }} </p>
+    {% if session['email'] in config.ADMINS %}
     <a class="btn btn-outline-warning" href="{{ url_for('stores.edit_store', store_id=store._id) }}" role="button"><i class="fas fa-edit"></i> Edytuj sklep</a>
     <a class="btn btn-outline-danger" href="{{ url_for('stores.delete_store', store_id=store._id) }}" role="button"><i class="fas fa-trash-alt"></i> Usuń sklep</a>
+    {% endif %}
 </div>
 {% endblock %}

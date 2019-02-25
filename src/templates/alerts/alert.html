@@ -4,9 +4,11 @@
     <h1><strong><i class="fas fa-bell"></i> Alert</strong> <small>dla: "{{ alert.item.name }}"</small></h1>
     <hr class="my-4">
     <p><strong><i class="fas fa-hand-holding-usd"></i> Aktualna cena: </strong>{{ alert.item.price }}</p>
+    <p><strong><i class="far fa-arrow-alt-circle-down"></i> Limit ustawiony na: </strong>{{ alert.price_limit }}</p>
     <p><strong><i class="fas fa-calendar-times"></i> Kiedy sprawdzone:</strong> {{ alert.last_checked.strftime("%d-%m-%Y, godzina %H:%M") }}</p>
     <a class="btn btn-outline-primary" href="{{ alert.item.url }}" role="button"><i class="fas fa-shopping-basket"></i> Strona przedmiotu</a>
     <a class="btn btn-outline-success" href="{{ url_for('alerts.check_alert_price', alert_id=alert._id) }}" role="button"><i class="fas fa-chart-line"></i> Sprawdź cenę</a>
+    <a class="btn btn-outline-warning" href="{{ url_for('alerts.edit_alert', alert_id=alert._id) }}" role="button"><i class="fas fa-edit"></i> Edytuj alert</a>
     {% if alert.active %}
     <a class="btn btn-outline-secondary" href="{{ url_for('alerts.deactivate_alert', alert_id=alert._id) }}" role="button"><i class="fas fa-times-circle"></i> Dezaktywuj alert</a>
     {% else %}
