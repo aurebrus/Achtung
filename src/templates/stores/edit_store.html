@@ -1,6 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="pb-2 mt-4 mb-2 border-bottom">
+    <h1>Edytuj sklep</h1>
+</div>
 <div class="jumbotron">
-    <p>Edytuj sklep</p>
+<div class="form-size">
+    <form method="POST">
+        <div class="form-group">
+            <label for="name"><strong>Nazwa</strong></label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Nazwa sklepu" value="{{ store.name }}">
+        </div>
+        <div class="form-group">
+            <label for="url_prefix"><strong>URL</strong></label>
+            <input type="text" class="form-control" id="url_prefix" name="url_prefix" placeholder="URL sklepu (prefix)" value="{{ store.url_prefix }}" aria-describedby="prefixHelp">
+            <span id="prefixHelp" class="help-block">Od jakich znaków wszystkie URL w sklepie internetowym się zaczynają.</span>
+        </div>
+        <div class="form-group">
+            <label for="tag_name"><strong>Tag</strong></label>
+            <input type="text" class="form-control" id="tag_name" name="tag_name" placeholder="Nazwa tagu (span)" value="{{ store.tag_name }}" aria-describedby="tagHelp">
+            <span id="tagHelp" class="help-block">Jaki jest tag HTML (zazwyczaj <code>< span ></code>) na stronie sklepu, który zawiera cenę przedmiotu.</span>
+        </div>
+        <div class="form-group">
+            <label for="query"><strong>Zapytanie</strong></label>
+            <input type="text" class="form-control" id="query" name="query" placeholder="Zapytanie, które wyszuka cenę" value='{{ store.query | tojson }}' aria-describedby="queryHelp">
+            <span id="queryHelp" class="help-block">Jakie zapytanie (JSON format) musimy wykonać, aby uzyskać cenę (przykład: {"id": "price_now"}). Użyj podwójnych cudzysłowów! (").</span>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i> Edytuj</button>
+    </form>
+</div>
 </div>
 {% endblock %}

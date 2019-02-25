@@ -17,6 +17,7 @@ def create_alert():
         item.save_to_mongo()
         alert = Alert(session['email'], price_limit, item._id)
         alert.load_item_price() #zapisuje już do mongo
+        return redirect(url_for('users.user_alerts'))
 
     return render_template('alerts/create_alert.html')
 
