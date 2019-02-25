@@ -28,9 +28,10 @@ class Alert(object):
                 "from": AlertConstants.FROM,
                 "to": self.user_email,
                 "subject": "(Achtung): Cena osiągnięta dla: {}".format(self.item.name),
-                "text": "Cena dla przedmiotu {} została osiągnięta! Link:".format(self.item.name)
+                "text": "Cena dla przedmiotu '{}' została osiągnięta! Link: {}.".format(self.item.name, self.item.url)
             }
         )
+
     @classmethod
     def find_last_upadate(cls, minutes_since_update = AlertConstants.ALERT_TIMEOUT):
         last_updated_limit = datetime.datetime.now() - datetime.timedelta(minutes=minutes_since_update)
