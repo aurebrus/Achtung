@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+ <p>Nieprawidłowe dane logowania. Spróbuj jeszcze raz:</p>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('users.login_user') }}" role="button"><i class="fas fa-sign-in-alt"></i> Zaloguj się</a>
+</div>
+{% endblock %}
