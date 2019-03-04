@@ -18,7 +18,7 @@ class Alert(object):
 
 
     def __repr__(self):
-        return "<Alert for {} on irem with price {}>".format(self.user_email, self.item.name, self.price_limit)
+        return "<Alert for {} on item with price {}>".format(self.user_email, self.item.name, self.price_limit)
 
     def send(self):
         return requests.post(

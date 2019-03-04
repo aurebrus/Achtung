@@ -24,16 +24,18 @@ class Item(object):
         return "<Item {} with URL {}>".format(self.name, self.url)
 
     def load_price(self):
-         request = requests.get(self.url)
-         content = request.content
-         soup = BeautifulSoup(content, "html.parser")
-         element = soup.find(self.tag_name, self.query)
-         string_price = element.text.strip()
+        request = requests.get(self.url)
+        content = request.content
+        soup = BeautifulSoup(content, "html.parser")
+        element = soup.find(self.tag_name, self.query)
+        string_price = element.text.strip()
+        string_price = string_price.replace(",", ".")
+        string_price = string_price.replace(" ", "")
+        pattern = re.compile("(\d+.\d+)")
+        match = pattern.search(string_price)
+        self.price = float(match.group())
 
-         pattern = re.compile("(\d+.\d+)")
-         match = pattern.search(string_price)
-         self.price =float(match.group())
-         return self.price
+        return self.price
 
 
     def save_to_mongo(self):
