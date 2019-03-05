@@ -33,11 +33,12 @@ class Alert(object):
         )
 
     @classmethod
-    def find_last_upadate(cls, minutes_since_update = AlertConstants.ALERT_TIMEOUT):
-        last_updated_limit = datetime.datetime.now() - datetime.timedelta(minutes=minutes_since_update)
+    def find_last_upadate(cls, minutes_since_update=AlertConstants.ALERT_TIMEOUT):
+        last_updated_limit = datetime.datetime.utcnow() - datetime.timedelta(minutes=minutes_since_update)
         return [cls(**elem) for elem in Database.find(AlertConstants.COLLECTION,
-                                                      {"last_chcked": {"$lte": last_updated_limit},
-                                                       "active": True
+                                                      {"last_checked":
+                                                           {"$lte": last_updated_limit},
+                                                  "active": True
                                                        })]
 
     def seve_to_mongo(self):

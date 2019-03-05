@@ -1,5 +1,5 @@
-URL = "https://api.mailgun.net/v3/sandboxa08dd2af716e43dfb7bf809afa63488c.mailgun.org/messages"
-API_KEY = "4f9db8d55c116adfee7d41ab978d3cc2-1b65790d-17183ef6"
-FROM = "Mailgun Sandbox <postmaster@sandboxa08dd2af716e43dfb7bf809afa63488c.mailgun.org>"
+URL = "https://api.mailgun.net/v3/sandbox215aa77a43e046c19f52a2d51335f67d.mailgun.org/messages"
+API_KEY = "8902bdc4a912d12bca13d54447a9faeb-acb0b40c-15d73e34"
+FROM = "Mailgun Sandbox <postmaster@sandbox215aa77a43e046c19f52a2d51335f67d.mailgun.org>"
 ALERT_TIMEOUT = 10
 COLLECTION = "alerts"
